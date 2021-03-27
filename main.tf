@@ -1,5 +1,15 @@
 #  main.tf
 
+terraform {
+  required_version = ">= 0.12"
+  backend "s3" {
+    bucket = "app-bucket-ctcba"
+    key = "app/state.tfstate"
+    region = "eu-west-1"
+  }
+  
+}
+
 resource "aws_vpc" "app-vpc" {
   cidr_block = var.vpc_cidr_block
   tags = {
